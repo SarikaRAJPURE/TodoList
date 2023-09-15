@@ -10,6 +10,8 @@ const port = 3000;
 let newItems = [];
 let workItems = [];
 
+mongoose.set('strictQuery', false);
+
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
 
