@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Todo List-EJS</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.css">
+
+        <link rel="stylesheet" href="/styles/main.css">
+    </head>
+    <header>
+    
+<body>
+    <%- include("partials/header.ejs") %>
+    <main>
+   <!--  <h1>TodoList</h1> -->
+    <div class="box" id="heading"><h2><%= currentDay %></h2></div>
+    <div class="box">
+        <%- include("partials/todo.ejs") %>
+    </div>
+    </div>
+</main>
+<%- include("partials/footer.ejs") %>
+</body>
+</html>

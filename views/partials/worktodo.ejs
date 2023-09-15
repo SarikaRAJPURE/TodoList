@@ -1,0 +1,25 @@
+<div class="item">
+    <input type="checkbox" >
+    <p> Upload code to github</p>                
+</div>            
+<div class="item">
+    <input type="checkbox">
+    <p>Test the code</p>
+</div>
+<div class="item">
+    <input type="checkbox">
+    <p>Put it into production</p>
+</div>
+<% for( i=0;i<newListItems.length;i++){%>
+    <div class="item"><input type="checkbox"><p><%= newListItems[i] %></p></div>
+    <% } %>
+
+<!-- <form action="/" method="post">
+<input type="text" name="newItem" autocomplete="off" placeholder="new Item">
+<button type="submit" id="addbtn">+</button>
+</form> -->
+
+<form class="item" action="/work" method="post">
+<input type="text" name="newItem" placeholder="New Item" autocomplete="off" />
+<button type="submit" name="list" id="addbtn">+</button>
+</form>

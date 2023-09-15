@@ -1,0 +1,41 @@
+<!-- <div class="item">
+                <input type="checkbox" >
+                <p> food</p>                
+            </div>            
+            <div class="item">
+                <input type="checkbox">
+                <p>clean house</p>
+            </div>
+            <div class="item">
+                <input type="checkbox">
+                <p>Laundry</p>
+            </div> -->
+<div class="box">
+
+
+    <% newListItems.forEach(item=>{%>
+        <form action="/delete" method="post">
+            <div class="item">
+                <input type="checkbox" name="checkboxname" value="<%=item._id %>" onchange="this.form.submit()">
+                <p>
+                    <%= item.name %>
+                </p>
+            </div>
+            <input type="hidden" name="listName" value="<%= currentDay %>">
+        </form>
+        <% } );%>
+
+
+
+            <!-- <form action="/" method="post">
+            <input type="text" name="newItem" autocomplete="off" placeholder="new Item">
+            <button type="submit" id="addbtn">+</button>
+        </form> -->
+
+            <form class="item" action="/" method="post">
+                <input type="text" name="newItem" placeholder="New Item" autocomplete="off" />
+                <button type="submit" name="list" id="addbtn" value="<%= currentDay %>">+</button>
+            </form>
+
+
+</div>
