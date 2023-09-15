@@ -14,8 +14,16 @@ app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
 
 //create new database inside mongodb
-mongoose.connect(`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@cluster0.inm4poz.mongodb.net/todolistDB?retryWrites=true&w=majority`, { useNewUrlParser: true });
+const connectDB= async()=>{
+  try{
+    mongoose.connect(`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@cluster0.inm4poz.mongodb.net/todolistDB?retryWrites=true&w=majority`, { useNewUrlParser: true });
+    console.log("Successfully connected to mongoDB");
+  }catch(error){
+    console.log("Connection failed!"+ error.message);
+  }
+}
 
+connectDB();
 //create a schema
 const itemsSchema = {
   name: String
