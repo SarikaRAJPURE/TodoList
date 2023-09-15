@@ -61,7 +61,7 @@ var day = today.toLocaleDateString("en-US", options); */
 
 
 app.get('/', async (req, res) => {
-
+try{
   //console.log(today.toLocaleDateString("en-US")); // 9/17/2016
   // console.log(day); // Saturday, September 17, 2016
   const newItemsDB = await Item.find({});
@@ -72,10 +72,16 @@ app.get('/', async (req, res) => {
     //console.log(newItemsDB);
     res.render("index.ejs", { currentDay: "Today", newListItems: newItemsDB });
   }
+}catch(error) {
+  res.status(error.response.status);
+  return res.send(error.message);
+}
+  
 });
 
 app.get('/:customListName', async (req, res) => {
-  const customListName = _.capitalize(req.params.customListName);
+  try{
+    const customListName = _.capitalize(req.params.customListName);
   console.log(customListName);
   const result = await List.findOne({ name: customListName });
   if (!result) {
@@ -92,10 +98,14 @@ app.get('/:customListName', async (req, res) => {
     console.log("List exist");
     res.render("index.ejs", { currentDay: result.name, newListItems: result.items });
   }
+  }catch(error) {
+    res.status(error.response.status);
+    return res.send(error.message);
+  }  
 });
 
  app.post("/", async (req, res) => {
-
+try{
   let itemName = req.body.newItem;
   let listName = req.body.list;
   console.log(listName);
@@ -116,12 +126,18 @@ app.get('/:customListName', async (req, res) => {
     foundList.save();
     res.redirect("/" + listName);
   }
+}
+catch(error) {
+  res.status(error.response.status);
+  return res.send(error.message);
+}  
 
 }); 
 
 
 app.post('/delete', async (req, res) => {
-  //console.log(req.body.checkboxname);
+  try{
+    //console.log(req.body.checkboxname);
   const checkedItemId = req.body.checkboxname;
   const listName = req.body.listName;
   if(listName === "Today"){
@@ -132,6 +148,10 @@ app.post('/delete', async (req, res) => {
     const result = await List.findOneAndUpdate({name:listName},{$pull:{items:{_id:checkedItemId}}});
     res.redirect("/"+listName);
   }
+  }catch(error) {
+    res.status(error.response.status);
+    return res.send(error.message);
+  }  
   
 });
 
