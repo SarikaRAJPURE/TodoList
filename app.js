@@ -18,7 +18,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 //create new database inside mongodb
 const connectDB= async()=>{
   try{
-    mongoose.connect(`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@cluster0.inm4poz.mongodb.net/todolistDB?retryWrites=true&w=majority`, { useNewUrlParser: true });
+    mongoose.connect(`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@cluster0.8rtb2up.mongodb.net/todolistDB?retryWrites=true&w=majority`, { useNewUrlParser: true });
+    //mongoose.connect(`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@cluster0.inm4poz.mongodb.net/todolistDB?retryWrites=true&w=majority`, { useNewUrlParser: true });
     console.log("Successfully connected to mongoDB");
   }catch(error){
     console.log("Connection failed!"+ error.message);
@@ -91,7 +92,7 @@ app.get('/:customListName', async (req, res) => {
       items: defaultItems
     });
     list.save();
-    console.log(list);
+    //console.log(list);
     res.redirect("/" + customListName);
   }
   else {
@@ -121,7 +122,7 @@ try{
   else {
     const foundList = await List.findOne({ name: listName });
     console.log(listName);
-    console.log(foundList);
+    //console.log(foundList);
     foundList.items.push(item);
     foundList.save();
     res.redirect("/" + listName);
